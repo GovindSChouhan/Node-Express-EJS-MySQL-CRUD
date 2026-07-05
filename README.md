@@ -1,6 +1,6 @@
 # Node-Express-EJS-MySQL-CRUD
 
-A simple CRUD project built to learn how **Node.js**, **Express**, **EJS**, and **MySQL** work together.
+A simple CRUD project built to learn how **Node.js**, **Express.js**, **EJS**, and **MySQL** work together.
 
 ## Tech Stack
 
@@ -22,7 +22,9 @@ MySQL Query
    ↓
 Database
    ↓
-Result
+Query Result
+   ↓
+Express
    ↓
 EJS
    ↓
@@ -36,7 +38,7 @@ Browser
 * Edit username
 * Password verification before update
 * MySQL CRUD
-* Dynamic EJS pages
+* Dynamic EJS rendering
 
 ---
 
@@ -70,7 +72,7 @@ In `connectConcpt.js`
 password: "YOUR_PASSWORD"
 ```
 
-### 5. Start server
+### 5. Start Server
 
 ```bash
 nodemon connectConcpt.js
@@ -98,12 +100,191 @@ http://localhost:8080/user
 
 ---
 
-## Note
+# Revision Notes
 
-* This project was built mainly for **learning and revision**.
-* Many comments inside the code are intentionally written in simple language (including Hinglish) to help me quickly revise concepts and understand the execution flow later.
-* The focus of this project is understanding the **request → Express → MySQL → EJS → browser** flow, not writing production-ready code.
+## Overall Flow
+
+```text
+Client Request
+      ↓
+Express Route
+      ↓
+req.params / req.body
+      ↓
+connection.query()
+      ↓
+MySQL
+      ↓
+Result
+      ↓
+res.render() / res.send() / res.redirect()
+      ↓
+Browser Response
+```
+
+## Express Flow
+
+```text
+require()
+↓
+Load package
+
+app.get()
+↓
+Register Route
+
+app.listen()
+↓
+Start Server
+
+Browser Request
+↓
+Route Executes
+```
+
+**Important:** `app.get()` **does not execute immediately.** It is only registered. It runs **only when the browser requests that route.**
 
 ---
 
-**Author:** Govind Singh Chouhan
+## MySQL Flow
+
+```text
+createConnection()
+↓
+Prepare DB connection
+
+connection.query()
+↓
+Execute SQL
+
+callback(err, result)
+↓
+Receive Result
+```
+
+---
+
+## EJS Flow
+
+```text
+res.render("home.ejs", {count})
+          ↓
+Send data
+          ↓
+EJS receives object
+          ↓
+<%= count %>
+          ↓
+HTML generated
+          ↓
+Browser
+```
+
+---
+
+## req.params
+
+```text
+URL
+↓
+/user/123/edit
+
+req.params
+
+{
+   id: "123"
+}
+```
+
+Use when data comes **from the URL**.
+
+---
+
+## req.body
+
+```text
+HTML Form
+↓
+User submits form
+↓
+express.urlencoded()
+↓
+req.body
+```
+
+Use when data comes **from a form**.
+
+---
+
+## res Methods
+
+```text
+res.send()
+↓
+Send text/object
+
+res.render()
+↓
+Render EJS page
+
+res.redirect()
+↓
+Go to another route
+```
+
+---
+
+## CRUD Mapping
+
+```text
+GET
+↓
+Read
+
+POST
+↓
+Create
+
+PATCH
+↓
+Update
+
+DELETE
+↓
+Delete
+```
+
+---
+
+## Things I Learned
+
+* Express Routing
+* Route Parameters (`req.params`)
+* Form Data (`req.body`)
+* MySQL Connection
+* SQL Queries
+* Callback Flow
+* EJS Rendering
+* Passing Data to EJS
+* Password Verification
+* Method Override
+* CRUD Operations
+* Browser → Express → Database → Browser flow
+
+---
+
+## Note
+
+* This project is **only for learning and revision**.
+* Most comments are intentionally written in simple language (including Hinglish) for my own understanding.
+* The goal is to understand **how data flows**, not to memorize syntax.
+* Whenever confused, first ask:
+
+  * **Where did the data come from?**
+  * **Where is the data going next?**
+
+---
+
+## Author
+
+**Govind Singh Chouhan**
