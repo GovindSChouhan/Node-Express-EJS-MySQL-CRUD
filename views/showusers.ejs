@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+     <style>
+        table, th, td{
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+   
+    <table>
+        <tr>
+            <td>id</td>
+            <td>Email</td>
+            <td>User</td>
+        </tr>
+        <!-- <tr>
+            <td>id</td>
+            <td>abc@gmail</td>
+            <td>abc</td>
+        </tr> -->
+         <%for(user of users){ %>
+        <tr>
+          <td><%= user.id %></td>
+          <td><%=user.email%></td>
+          <td><%=user.username%></td><!--to add a edit button using form--> 
+          <td>
+          <form method="GET" action="/user/<%=user.id%>/edit">
+            <button>Edit userName</button>
+          </form>
+          </td>
+        </tr>
+  <%  } %>
+    </table>
+</body>
+</html>
+
