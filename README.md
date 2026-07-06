@@ -2,7 +2,7 @@
 
 A simple CRUD project built to learn how **Node.js**, **Express.js**, **EJS**, and **MySQL** work together.
 
-## Note
+## Note  
 
 * This project is **only for learning and revision**.
 * Most comments are intentionally written in simple language (including Hinglish) for my own understanding.
